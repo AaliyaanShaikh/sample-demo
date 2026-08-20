@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@source "../**/*.{ts,tsx}";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
+  --color-ink: #1c1916;
+  --color-paper: #f4efe6;
+  --color-mist: #e7e0d4;
+  --color-gold: #8a6a3b;
+}
+
+@layer base {
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased overflow-x-hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-serif;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.typing-dot {
+  width: 4px;
+  height: 4px;
+  background-color: #1c1916;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+  opacity: 0.4;
+  animation: typing-pulse 1s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) {
+  opacity: 0.6;
+  animation-delay: 0.15s;
+}
+.typing-dot:nth-child(3) {
+  opacity: 0.8;
+  animation-delay: 0.3s;
+}
+
+@keyframes typing-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
