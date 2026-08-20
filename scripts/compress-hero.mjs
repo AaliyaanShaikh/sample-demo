@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 /**
- * Re-encode the source hero MP4 into a small, fast-start web file
- * (`public/hero.mp4`) plus a still poster (`public/hero-poster.jpg`).
+ * Re-encode the kept source clip into `public/hero.mp4` plus `public/hero-poster.jpg`.
  * Requires: npm install (devDependency ffmpeg-static).
  *
  * Usage: npm run compress:hero
@@ -36,7 +35,7 @@ if (!ffmpeg) {
 const input = path.join(
   root,
   "public",
-  "Luxury Redefined_ Explore BlueStone s Solitaire Rings_1080p-2.mp4",
+  "From Main Klickpin CF- APART | Biżuteria srebrna pozłacana - 1yR0hFE26.mp4",
 );
 const output = path.join(root, "public", "hero.mp4");
 const tempOutput = path.join(root, "public", "hero.tmp.mp4");
