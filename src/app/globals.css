@@ -1,0 +1,272 @@
+@import "tailwindcss";
+
+/* One glob under `src/` so every .tsx/.ts is scanned — avoids empty utility CSS when folders/components are added or Turbopack resolves paths differently. */
+@source "../**/*.{ts,tsx}";
+
+@theme {
+  /* Bound in root layout via next/font — do not use @import for Google Fonts (can block Tailwind) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif:
+    var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times,
+    serif;
+
+  --color-background: #0f0f0f;
+  --color-primary: #ffffff;
+  --color-secondary: #ffffff;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #ffffff;
+  --color-alt-bg: #faf9f6;
+  --color-alt-primary: #c6a972;
+  --color-alt-secondary: #e8d8c3;
+  --color-alt-text: #1a1a1a;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text-primary font-sans antialiased selection:bg-white/20 selection:text-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif tracking-wide;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    @apply bg-background/60 backdrop-blur-md border border-white/5;
+  }
+
+  .gold-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
+  }
+
+  .gold-gradient-text {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .dark-gradient {
+    background: linear-gradient(180deg, var(--color-background), #1a1a1a);
+  }
+
+  .noise-bg {
+    position: relative;
+  }
+
+  .noise-bg::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+}
+
+html.light {
+  --color-background: #f6f3ee;
+  --color-primary: #1a1a1a;
+  --color-secondary: #1a1a1a;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #3f3f3f;
+  --color-alt-bg: #0f0f0f;
+  --color-alt-text: #faf9f6;
+  color-scheme: light;
+}
+
+html.light body {
+  @apply selection:bg-black/15 selection:text-black;
+}
+
+html.light .glass {
+  background-color: color-mix(in srgb, var(--color-background) 78%, transparent);
+  border-color: rgb(26 26 26 / 0.1);
+}
+
+html.light header {
+  background-color: color-mix(in srgb, var(--color-background) 92%, transparent) !important;
+  border-bottom: 1px solid rgb(26 26 26 / 0.08);
+  backdrop-filter: blur(16px);
+}
+
+html.light :where(.text-white) {
+  color: #1a1a1a;
+}
+html.light :where(.text-white\/95) {
+  color: rgb(26 26 26 / 0.95);
+}
+html.light :where(.text-white\/90) {
+  color: rgb(26 26 26 / 0.9);
+}
+html.light :where(.text-white\/85) {
+  color: rgb(26 26 26 / 0.85);
+}
+html.light :where(.text-white\/80) {
+  color: rgb(26 26 26 / 0.8);
+}
+html.light :where(.text-white\/75) {
+  color: rgb(26 26 26 / 0.75);
+}
+html.light :where(.text-white\/70) {
+  color: rgb(26 26 26 / 0.7);
+}
+html.light :where(.text-white\/65) {
+  color: rgb(26 26 26 / 0.65);
+}
+html.light :where(.text-white\/60) {
+  color: rgb(26 26 26 / 0.6);
+}
+html.light :where(.text-white\/55) {
+  color: rgb(26 26 26 / 0.55);
+}
+html.light :where(.text-white\/50) {
+  color: rgb(26 26 26 / 0.5);
+}
+html.light :where(.text-white\/40) {
+  color: rgb(26 26 26 / 0.4);
+}
+html.light :where(.text-white\/35) {
+  color: rgb(26 26 26 / 0.35);
+}
+
+html.light :where(.border-white\/5) {
+  border-color: rgb(26 26 26 / 0.08);
+}
+html.light :where(.border-white\/10) {
+  border-color: rgb(26 26 26 / 0.12);
+}
+html.light :where(.border-white\/15) {
+  border-color: rgb(26 26 26 / 0.15);
+}
+html.light :where(.border-white\/20) {
+  border-color: rgb(26 26 26 / 0.2);
+}
+html.light :where(.border-white\/25) {
+  border-color: rgb(26 26 26 / 0.25);
+}
+
+html.light :where(.bg-\[\#0a0a0a\], .bg-\[\#0f0f0f\], .bg-\[\#111\], .bg-\[\#1A1A1A\], .bg-\[\#1a1a1a\]) {
+  background-color: var(--color-background);
+}
+
+html.light :where(.hover\:bg-white\/5:hover) {
+  background-color: rgb(26 26 26 / 0.05);
+}
+html.light :where(.hover\:bg-white\/10:hover) {
+  background-color: rgb(26 26 26 / 0.08);
+}
+
+html.light .theme-media-overlay :where(.text-white) {
+  color: #fff;
+}
+html.light .theme-media-overlay :where(.text-white\/95) {
+  color: rgb(255 255 255 / 0.95);
+}
+html.light .theme-media-overlay :where(.text-white\/90) {
+  color: rgb(255 255 255 / 0.9);
+}
+html.light .theme-media-overlay :where(.text-white\/80) {
+  color: rgb(255 255 255 / 0.8);
+}
+html.light .theme-media-overlay :where(.text-white\/70) {
+  color: rgb(255 255 255 / 0.7);
+}
+html.light .theme-media-overlay :where(.text-white\/65) {
+  color: rgb(255 255 255 / 0.65);
+}
+html.light .theme-media-overlay :where(.text-white\/60) {
+  color: rgb(255 255 255 / 0.6);
+}
+
+html.light header .bg-white {
+  background-color: #1a1a1a;
+  color: #f6f3ee;
+}
+
+html.light .theme-keep-dark :where(.text-white) {
+  color: #fff;
+}
+html.light .theme-keep-dark :where(.text-white\/70) {
+  color: rgb(255 255 255 / 0.7);
+}
+html.light .theme-keep-dark :where(.bg-\[\#1A1A1A\], .bg-\[\#1a1a1a\]) {
+  background-color: #1a1a1a;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-video {
+  pointer-events: none;
+}
+.hero-video::-webkit-media-controls,
+.hero-video::-webkit-media-controls-enclosure,
+.hero-video::-webkit-media-controls-panel,
+.hero-video::-webkit-media-controls-start-playback-button,
+.hero-video::-webkit-media-controls-play-button,
+.hero-video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  appearance: none;
+  -webkit-appearance: none;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.typing-dot {
+  width: 4px;
+  height: 4px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+  opacity: 0.4;
+  animation: typing-pulse 1s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) {
+  opacity: 0.6;
+  animation-delay: 0.15s;
+}
+.typing-dot:nth-child(3) {
+  opacity: 0.8;
+  animation-delay: 0.3s;
+}
+
+@keyframes typing-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}

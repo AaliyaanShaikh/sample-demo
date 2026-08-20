@@ -1,0 +1,38 @@
+{
+  "name": "react-example",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "next dev --port 3001",
+    "dev:turbo": "next dev --turbo --port 3001",
+    "fix:chunks": "npm run clean && next dev --port 3001",
+    "prebuild": "node scripts/ensure-build-safe.mjs",
+    "build": "next build",
+    "start": "next start --port 3001",
+    "clean": "rm -rf .next dist node_modules/.cache",
+    "dev:fresh": "npm run clean && next dev --port 3001",
+    "compress:hero": "node scripts/compress-hero.mjs",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@tailwindcss/postcss": "^4.2.2",
+    "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.6.0",
+    "gsap": "^3.14.2",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "next": "^15.5.14",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^4.1.14"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "ffmpeg-static": "^5.2.0",
+    "typescript": "~5.8.2"
+  }
+}
